@@ -4,6 +4,10 @@ CLI em Python que utiliza um LLM para transformar mensagens longas e informais d
 
 ## 1. Sobre o Projeto
 
+### Definição do Problema
+
+> Um professor, tutor ou monitor precisa transformar mensagens longas e informais de alunos em resumos estruturados (Dúvida central, Urgência e Ação esperada), porque atualmente enfrenta a dificuldade de as mensagens virem misturadas com desabafos e contexto irrelevante, o que inviabiliza o uso de regras fixas (Regex).
+
 * **Problema:** Alto volume de mensagens longas e desestruturadas dificulta a triagem rápida de dúvidas acadêmicas.
 * **Público-Alvo:** Professores, tutores e monitores.
 * **Por que usar LLM:** Regras fixas ou `regex` não lidam bem com linguagem informal e desabafos; o LLM interpreta o contexto e extrai o ponto central com precisão.
