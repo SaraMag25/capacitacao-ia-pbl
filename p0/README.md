@@ -15,7 +15,8 @@ CLI em Python que utiliza um LLM para transformar mensagens longas e informais d
 ## 2. Requisitos
 
 * Python 3.10+
-* Dependências (`requirements.txt`): `requests`, `python-dotenv`
+* Chave de API do Google Gemini (obtenha em [Google AI Studio](https://aistudio.google.com/apikey)), definida como `GEMINI_API_KEY` no arquivo `.env`
+* Dependências principais: `google-genai` (SDK do Gemini) e `python-dotenv`. Versões exatas fixadas em `requirements.txt`
 
 ## 3. Instalação e Execução
 
