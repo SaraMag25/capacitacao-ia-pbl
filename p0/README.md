@@ -1,45 +1,70 @@
 # Resumidor de Dúvidas de Alunos (Projeto P0)
 
-Este projeto é uma aplicação de linha de comando que utiliza a API do Google Gemini para extrair e resumir a dúvida principal em mensagens de alunos.
+## O Problema
+Monitores e professores frequentemente recebem mensagens longas, confusas e com desabafos de alunos relatando erros de código, o que atrasa a identificação do problema técnico real (ex: mensagens enormes para dizer que ocorreu um `IndexError`).
 
-## Tecnologias Utilizadas
-- **Python 3.10+**
-- `google-generativeai`: Comunicação com o modelo de linguagem (LLM).
-- `python-dotenv`: Gerenciamento seguro de variáveis de ambiente.
+## Público-Alvo
+Professores, monitores e tutores de disciplinas de programação e exatas.
 
-## Como preparar o ambiente (Ambiente Limpo)
-Para garantir a reprodutibilidade, siga os passos abaixo para executar em um ambiente virtual limpo:
+## Justificativa para utilizar um LLM
+Um LLM é ideal para este problema devido à sua capacidade de Processamento de Linguagem Natural (PLN) para interpretar textos não estruturados, filtrar emoções/ruídos e sintetizar a intenção técnica (o erro ou dúvida central) de forma clara e direta.
 
-1. Clone este repositório.
-2. Crie um ambiente virtual: 
-   `python -m venv venv`
-3. Ative o ambiente virtual:
-   - Linux/Mac: `source venv/bin/activate`
-   - Windows: `venv\Scripts\activate`
-4. Instale as dependências do projeto: 
-   `pip install -r requirements.txt`
+## Funcionamento da Solução
+A aplicação funciona via interface de linha de comando (CLI). O usuário executa o script, cola a mensagem do aluno e, ao finalizar a entrada, o sistema se comunica com a API do Google Gemini para retornar um resumo objetivo da dúvida técnica.
+
+## Limites do Projeto e Limitações Conhecidas
+- O programa roda apenas no terminal, sem interface gráfica.
+- Depende de conexão ativa com a internet para chamar a API do Google.
+- O modelo pode ocasionalmente alucinar se a mensagem não tiver nenhum contexto técnico, tentando forçar um resumo onde não há dúvida.
+
+## Instalação e Preparação do Ambiente
+```bash
+# 1. Clone o repositório
+git clone <link-do-seu-repositorio>
+
+# 2. Crie um ambiente virtual e ative-o
+python -m venv venv
+source venv/bin/activate  # No Windows use: venv\Scripts\activate
+
+# 3. Instale as dependências
+pip install -r requirements.txt
+```
 
 ## Configuração
-Crie um arquivo chamado `.env` na raiz do projeto e adicione as suas configurações:
+
+Crie um arquivo `.env` na raiz do projeto (use o `.env.example` como base) e adicione suas chaves:
+
 ```env
-GEMINI_API_KEY="sua_chave_de_api_aqui"
+GEMINI_API_KEY="sua_chave_de_api"
 GEMINI_MODEL="gemini-1.5-flash"
 ```
 
-## Como Executar
+## Execução e Exemplos
 
-Rode a aplicação principal no terminal:
+Para rodar a aplicação:
 
 ```bash
 python main.py
 ```
 
-Cole a mensagem do aluno, pressione `Enter` e depois `Ctrl+D` para gerar o resumo.
+**Exemplo de Entrada:**
 
-## Testes Locais
+> "Professor, pelo amor de Deus, me ajuda. Estou desde ontem tentando rodar o 'for' na minha lista de notas que tem 5 itens indo de 0 a 5, mas sempre dá IndexError na linha 15. Será que é vírus?"
 
-Para executar o teste automatizado (mock) que valida a lógica interna sem consumir cota da API, execute:
+**Exemplo de Saída:**
+
+> INFO - Resumo gerado com sucesso.
+> RESUMO DA DÚVIDA
+> O aluno quer saber por que está recebendo um erro `IndexError` na linha 15 ao tentar iterar sobre uma lista de 5 itens usando um laço `for` de 0 a 5.
+
+## Execução dos Testes
+
+O projeto conta com testes automatizados utilizando `mock` para simular a chamada ao LLM sem consumir internet ou cota de API:
 
 ```bash
 python test_main.py
 ```
+
+## Link para o Vídeo
+
+[Cole o link do seu vídeo de apresentação aqui]
