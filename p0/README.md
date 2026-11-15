@@ -1,38 +1,45 @@
-# Resumidor de Dúvidas e Mensagens de Alunos (P0)
+# Resumidor de Dúvidas de Alunos (Projeto P0)
 
-CLI em Python que utiliza um LLM para transformar mensagens longas e informais de estudantes em um resumo estruturado com **dúvida central**, **urgência** e **ação esperada**.
+Este projeto é uma aplicação de linha de comando que utiliza a API do Google Gemini para extrair e resumir a dúvida principal em mensagens de alunos.
 
-## 1. Sobre o Projeto
+## Tecnologias Utilizadas
+- **Python 3.10+**
+- `google-generativeai`: Comunicação com o modelo de linguagem (LLM).
+- `python-dotenv`: Gerenciamento seguro de variáveis de ambiente.
 
-### Definição do Problema
+## Como preparar o ambiente (Ambiente Limpo)
+Para garantir a reprodutibilidade, siga os passos abaixo para executar em um ambiente virtual limpo:
 
-> Um professor, tutor ou monitor precisa transformar mensagens longas e informais de alunos em resumos estruturados (Dúvida central, Urgência e Ação esperada), porque atualmente enfrenta a dificuldade de as mensagens virem misturadas com desabafos e contexto irrelevante, o que inviabiliza o uso de regras fixas (Regex).
+1. Clone este repositório.
+2. Crie um ambiente virtual: 
+   `python -m venv venv`
+3. Ative o ambiente virtual:
+   - Linux/Mac: `source venv/bin/activate`
+   - Windows: `venv\Scripts\activate`
+4. Instale as dependências do projeto: 
+   `pip install -r requirements.txt`
 
-* **Problema:** Alto volume de mensagens longas e desestruturadas dificulta a triagem rápida de dúvidas acadêmicas.
-* **Público-Alvo:** Professores, tutores e monitores.
-* **Por que usar LLM:** Regras fixas ou `regex` não lidam bem com linguagem informal e desabafos; o LLM interpreta o contexto e extrai o ponto central com precisão.
+## Configuração
+Crie um arquivo chamado `.env` na raiz do projeto e adicione as suas configurações:
+```env
+GEMINI_API_KEY="sua_chave_de_api_aqui"
+GEMINI_MODEL="gemini-1.5-flash"
+```
 
-## 2. Requisitos
+## Como Executar
 
-* Python 3.10+
-* Chave de API do Google Gemini (obtenha em [Google AI Studio](https://aistudio.google.com/apikey)), definida como `GEMINI_API_KEY` no arquivo `.env`
-* Dependências principais: `google-genai` (SDK do Gemini) e `python-dotenv`. Versões exatas fixadas em `requirements.txt`
-
-## 3. Instalação e Execução
+Rode a aplicação principal no terminal:
 
 ```bash
-# 1. Clonar e acessar a pasta
-git clone https://github.com/SaraMag25/capacitacao-ia-pbl.git
-cd capacitacao-ia-pbl/p0
-
-# 2. Criar e ativar o ambiente virtual
-python3 -m venv .venv
-source .venv/bin/activate
-
-# 3. Instalar dependências e configurar o .env
-pip install -r requirements.txt
-cp .env.example .env
-
-# 4. Executar
 python main.py
+```
+
+Cole a mensagem do aluno, pressione `Enter` e depois `Ctrl+D` para gerar o resumo.
+
+## Testes Locais
+
+Para executar o teste automatizado (mock) que valida a lógica interna sem consumir cota da API, execute:
+
+```bash
+python test_main.py
 ```
