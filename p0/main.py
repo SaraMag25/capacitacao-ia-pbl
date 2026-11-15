@@ -4,11 +4,12 @@ from google import genai
 def main():
     api_key = carregar_configuracao()
     cliente = genai.Client(api_key=api_key)
-    print("Agora cole sua mensagem ou escreva e aperte Ctrl+D ao final")
-    mensagem_aluno = sys.stdin.read()
+    mensagem_aluno = capturar_entrada()
     prompt = f"Resuma a dúvida principal deste aluno de forma direta: {mensagem_aluno}"
     resposta = cliente.models.generate_content(model="gemini-3.5-flash", contents=prompt)
     print(resposta.text)
+
+
 
 
 def carregar_configuracao():
